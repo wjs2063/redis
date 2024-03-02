@@ -1,22 +1,20 @@
-import asyncio
-import datetime
-
+from fastapi import FastAPI
 import redis.asyncio as redis
+import httpx
+
+app = FastAPI()
 
 
-async def publish(channel):
-    r = redis.from_url("redis://localhost:6379")
-    idx = 0
-    try:
-        while idx < 10:
-            await r.publish(channel, f"test_example:{datetime.datetime.now()}")
-            await asyncio.sleep(1)
-            idx += 1
-    except Exception as e:
-        print(e)
+async def get_redis():
+    r = await redis.from_url("redis://localhost:6379")
+    return r
+
+
+@app.post("/pub")
+async def pub_to_redis(channel: str, text: str):
+    r = await get_redis()
+    print("redis connected")
+    for _ in range(5):
+        await r.publish(channel, text)
     await r.publish(channel, "STOP")
-
-
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-loop.run_until_complete(asyncio.gather(publish("1234")))
+    return {"response": "all task is done"}
