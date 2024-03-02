@@ -15,14 +15,18 @@ Client Side code
 # create redis server port 6379
 docker compose up -d
 
-# run client_server
-python client_server.py
+# 이순서로 서버 구동
 
 # subscribe_server (fastapi)
 uvicorn subscribe:app --host=0.0.0.0 --port=8000
 
 # run publish code
 uvicorn main:app --host=0.0.0.0 --port=9000
+
+# run client_server
+python client_server.py
+
+
 ```
 
 
