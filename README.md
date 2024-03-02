@@ -2,4 +2,5 @@
 Redis(Pub-Sub Model)
 
 
-![image](https://github.com/wjs2063/redis/assets/76778082/7f13a0a9-8381-417c-8235-cdec442e20a0)
+![image](https://github.com/wjs2063/redis/assets/76778082/cb8988be-4c04-4849-b8fe-8f8475d58d1d)
+
