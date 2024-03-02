@@ -11,7 +11,7 @@ async def pub_redis(vin):
 
 
 async def connect_websocket():
-    ws = await websockets.connect("ws://localhost:8000/ws?channel=1234", extra_headers={"channel": "1234"})
+    ws = await websockets.connect("ws://localhost:8000/ws?channel=1234", extra_headers={"channel": "1234","text":"client_test_example"})
     try:
         while True:
             data = await ws.recv()
@@ -22,3 +22,4 @@ async def connect_websocket():
 loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
 loop.run_until_complete(asyncio.gather(connect_websocket()))
+
